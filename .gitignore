@@ -44,3 +44,6 @@ npm-debug.log
 
 bundle.js
 *.swp
+
+docker/logs
+docker/msghistory

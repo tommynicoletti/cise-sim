@@ -56,11 +56,6 @@ import org.eclipse.jetty.util.component.LifeCycle.Listener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedReader;
-import java.io.Console;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 public class SimApp extends Application<SimConf> {
 
     private final Logger logger = LoggerFactory.getLogger(SimApp.class);
@@ -101,34 +96,6 @@ public class SimApp extends Application<SimConf> {
 
         environment.jersey().setUrlPattern("/api");
         // ask user for private key
-
-        String jksKeystorePassword = "";
-        String jksPrivateKeyPassowrd = "";
-        String jksKeystorePassPrompt = "Enter jks keystore password:";
-        String jksPrivateKeyPrompt = "Enter jks private key password:";
-
-        Console console = System.console();
-        // try to use the console first
-        if (console != null) {
-            jksKeystorePassword = String.valueOf(console.readPassword(jksKeystorePassPrompt));
-            jksPrivateKeyPassowrd = String.valueOf(console.readPassword(jksPrivateKeyPrompt));
-        } else {
-            // if the console is not available i.e. run in the background
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
-                System.out.println(jksKeystorePassPrompt);
-                jksKeystorePassword = br.readLine();
-                System.out.println(jksPrivateKeyPrompt);
-                jksPrivateKeyPassowrd = br.readLine();
-            } catch (IOException e) {
-                System.out.println("I/O Error getting string: " + e);
-                throw new RuntimeException(e);
-            }
-        }
-
-
-        System.setProperty("signature.keystore.password", jksKeystorePassword);
-        System.setProperty("signature.privatekey.password", jksPrivateKeyPassowrd);
-
 
         AppContext appCtx;
         try {

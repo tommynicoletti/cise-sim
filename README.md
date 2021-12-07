@@ -400,3 +400,18 @@ Examples:
 `20200611-120029798_PULLREQUEST_SENT_31fb100d-dd13-450d-858b-d410a5f2c345`
 
 `20200611-120029808_ACKSYNCH_RECV_184e0b37-bdb0-4efd-b993-ac18abd1f7ec`
+
+# Running steps
+
+1) Build project
+```
+mvn clean install -U
+```
+2) Build docker image
+```
+docker build -t ec-jrc/cise-sim:1.3.2 .
+```
+3) Run via docker-compose (please check certificate pwd and files before)
+```
+docker-compose up -d
+```

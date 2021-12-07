@@ -111,6 +111,8 @@ public class DefaultAppContext implements AppContext {
     @Override
     public SignatureService makeSignatureService() {
         //*correlation:Disp-Sign where P= pretty V=Valid p=nonpretty or v=nonvalid: signature.fail:Pv-Pv,Pv-pv,pv-Pv  and sax.fail: PV-PV,pV-pV success:pv-pv
+        logger.error("withKeyStoreName: " + this.simConfig.keyStoreFileName() + "\nwithKeyStorePassword: " + this.simConfig.keyStorePassword() + "\nwithPrivateKeyAlias: " + this.simConfig.privateKeyAlias() + "\nwithPrivateKeyPassword: " + this.simConfig.privateKeyPassword());
+
         return newSignatureService(this.xmlMapper)
                 .withKeyStoreName(this.simConfig.keyStoreFileName())
                 .withKeyStorePassword(this.simConfig.keyStorePassword())

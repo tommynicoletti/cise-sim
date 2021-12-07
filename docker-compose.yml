@@ -1,11 +1,12 @@
 version: '3'
 services:
   cise-sim:
-    image: ec-jrc/cise-sim:latest
+    image: ec-jrc/cise-sim:1.3.2
+    container_name: cise-sim
     volumes:
-      - ./conf:/srv/cise-simulator/conf
-      - ./logs:/srv/cise-simulator/logs
-      - ./msghistory:/srv/cise-simulator/msghistory
+      - ./docker/conf:/srv/cise-simulator/conf
+      - ./docker/logs:/srv/cise-simulator/logs
+      - ./docker/msghistory:/srv/cise-simulator/msghistory
     ports:
       - 8200:8200
       - 8201:8201
